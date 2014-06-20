@@ -1,0 +1,25 @@
+/*
+	"materials" : [	{
+		"DbgColor" : 15658734,
+		"DbgIndex" : 0,
+		"DbgName" : "_metal_barreldefault",
+		"blending" : "NormalBlending",
+		"colorAmbient" : [0.8,0.8,0.8],
+		"colorDiffuse" : [0.7,0.7,0.7],
+		"colorSpecular" : [0.0, 0.0, 0.0],
+		"mapDiffuse" : "yellow.jpg",
+		"mapDiffuseWrap" : ["repeat", "repeat"],
+		"mapLight" : "spec.jpg",
+		"mapLightWrap" : ["repeat", "repeat"],
+		"mapNormal" : "norm.jpg",
+		"mapNormalFactor" : 0.47826099395751953,
+		"mapNormalWrap" : ["repeat", "repeat"],
+		"depthTest" : true,
+		"depthWrite" : true,
+		"shading" : "Phong",
+		"specularCoef" : 11,
+		"transparency" : 1.0,
+		"transparent" : false,
+		"vertexColors" : false
+	}],
+*/

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Yoran's Mazes</title>
+<link href='http://fonts.googleapis.com/css?family=Emblema+One%7cBlack+Ops+One%7cGruppo' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<script type="text/javascript">
+function vertCenter(){
+	var divs = document.querySelectorAll('#menu>div, #playing>div, #pages>div, #hudpages>div, #error');
+	var contWIDTH = window.innerWidth,
+		contHEIGHT = window.innerHeight;
+	for (var i=0; i<divs.length; i++){
+		var h = divs[i].offsetHeight,
+		w = divs[i].offsetWidth;
+		if (contHEIGHT>h){
+			divs[i].style.marginTop = -h/2 + 'px';
+			divs[i].style.top = '50%';
+		} else{
+			divs[i].style.marginTop = '0px';
+			divs[i].style.top = '10px';
+		}
+		if (contWIDTH>w){
+			divs[i].style.marginLeft = -w/2 + 'px';
+			divs[i].style.left = '50%';
+		} else{
+			divs[i].style.marginLeft = '0px';
+			divs[i].style.left = '10px';
+		}
+	}
+}
+window.onload = vertCenter;
+</script>
+</head>
+<body onload="init()" onresize="resized()">
+
+<div id="loading">
+	<img 
+		id="loadico"
+		alt="Loading..."
+		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAAAaCAAAAABNipv7AAADFElEQVR4Ac3Ua2iVBRgH8N85uktqSrl5VzrqdFANEUNdibf6kIJa2adCupBKhUFk0of6YvWhIogkkAoiCBHJii7rviKK1MJmIE5Xpmmpy6VO3dzmnhqnuRcPOj1O1u/bw/Pn5c/D+74uSaqir55TMuk6F6vuUCXwYlTpOSuiwcU6EjOBqtitx1zagR954O3/S5WdK/WctN7UzVX6VVz/59b9zijNFP19uL3pGNBnzJjmw2noUwLNR2UNKj5+Qr+bS6t/JRFt1NCa52ubWtkS/6oeLmvud9EhXssWX3UwO86iLDqsl2VjPGXxoYj4vDAnmtdVUu8sbH3zh1G3z/rplm0ws6qgYdPezJSrgZceVLslxk9N4+SnlGUkLFzX9n77vLlrlp4dzesqd8fx2RhUHd/ANfXxVn+siVdheZxckvyYrU5e5cvmLeN5OJr65kTzqFK4L54HE0/HbaRr4j3OVJnSEnc6d5XYNxRXRozNiebxBU0caS2o/cpcZlScXqXLsoJNG5zbqTsOorHVgJxoHlXKnf4NqFPOItt36LLIRuexZhNocUUimneVkRragENGklGny4CS5JjrGBDSiWjeVfYYXAAMt4chDgKj6Zhkx9Ji3UhE862yQ3oCUG4H9YaBpQukqJcd+6wvknIeOdF8quza5SEw6UYfsltlMaa9TAGNh82B52brTjIasvplJE0oBIllmtR/0PaY+xdj2Os++oxPDFnNre82rTdQx3jPdEXPPlrVqDuJaDsw9Y9fXtBlXe3vYyG5XBGd7oO10f7x028ciLpx8EXEzto4Of/e+B6Z5mjZ3BDbBif+K0dqampmdf74QWNMT0SPRiXZB0dToU4jIuJJSCzPrmLJXxHRum4guOqDiPh2khnRXIib9kc0v9JfokqHBblVOqPptpgM3BVR7YxUbWSfkbtMyiy4oVinskXX6lJUOa9UtxLRoREjZM1ZPlCXkhVTQXJ5eS2L/XrXqA0VYNqBeMKFSrkcRu+NH7f+PGjywvTX80/oVUWPb48O9c8U6uWroHzcmGN7N59y4f4BLgiM/Uj19SQAAAAASUVORK5CYII="
+	/>
+</div>
+<div id="hud">
+		<div id="links">
+			<a title="Pause" id="pauseico" href="#" onclick="pause()"></a>
+			<a title="List of Levels" id="listico" href="#" onclick="nav('select','yes')"></a>
+		</div>
+
+		<div id="nav">
+			<a id="left" href="#" onclick="prevlev()"><span></span></a>
+			<a id="ref" href="#" onclick="restart()"><span></span></a>
+			<a id="right" href="#" onclick="nextlev()"><span></span></a>
+		</div>
+		
+		<div id="stats">
+			<h5>Moves : Pushes</h5>
+			
+			<p>
+			<span id="moves">0</span> : <span id="pushes">0</span>
+			</p>
+			
+			<p>
+			Best Moves: <span id="Mmoves">-</span> : <span id="Mpushes">-</span><br/>
+			Best Pushes: <span id="Pmoves">-</span> : <span id="Ppushes">-</span>
+			</p>
+		</div>
+		
+		<div id="hudpages">
+			<div id="next"><div>
+				<h3>Good Work</h3>
+				<p>You completed the level in <span id="endMoves">00</span> moves, <span id="endPushes">00</span> pushes</p>
+				<button onclick="nextlev()" id="nl">Next Level</button>
+				<button onclick="mainMenu()" id ="eg">Main Menu</button>
+				<button onclick="restart()">Restart</button>
+			</div></div>
+		</div>
+	</div>
+
+<div id="page">
+	<div id="menu">
+		<div id="main"><div>
+			<h1>Yoran's Mazes</h1>
+			<ul>
+				<li><a href="#" onclick="nav('select')">Play Game</a></li>
+				<li><a href="#" onclick="nav('opts')">Options</a></li>
+				<li><a href="#" onclick="nav('how')">How to Play</a></li>
+				<li><a href="#" onclick="nav('credits')">Credits</a></li>
+				<li><a href="#" onclick="nav('add')">Add Levels</a></li>
+			</ul>
+		</div></div>
+		<div id="pause"><div>
+			<h2>Paused</h2>
+			<ul>
+				<li><a href="#" onclick="unpause()">Continue</a></li>
+				<li><a href="#" onclick="nav('select')">Level Select</a></li>
+				<li><a href="#" onclick="mainMenu()">Main Menu</a></li>
+				<li><a href="#" onclick="nav('opts')">Options</a></li>
+				<li><a href="#" onclick="nav('how')">How to Play</a></li>
+				<li><a href="#" onclick="nav('credits')">Credits</a></li>
+			</ul>
+		</div></div>
+	</div>
+	
+	<div id="playing">
+		<div id="select"><a class="close" href="#" onclick="unNav()"></a><div>
+
+		<div id="packs"><div>
+			<h3>Levelpacks</h3>
+
+				<h4>Mazes</h4>
+				<table id="mazes">
+				</table>
+
+				<h4>Sokoban</h4>
+				<table id="soko">
+				</table>
+			
+			<div id="custom">
+				<h4>Custom</h4>
+				<table id="customtable">
+				</table>
+			</div>
+		</div></div>
+		
+		<div id="levels">
+			<div id="levhelp">
+			<h3>Levels</h3>
+			<p>
+			Select a levelpack on the left.
+			</p>
+			</div>
+			<div id="alllevels">
+			</div>
+		</div>
+
+		</div></div>
+	</div>
+
+	<div id="pages">
+		<div id="opts"><a class="close" href="#" onclick="unNav()"></a><div>
+			<h3>Options</h3>
+
+
+			<h4>Renderer (must refresh)</h4>
+				<dl>
+					<dt>Use WebGL Renderer</dt>
+						<dd><a href="#" id="renderopt" onclick="toggleRender()" title="WebGL is best, but you can still change it">???</a></dd>
+				</dl>
+			<div id="webglonly">
+				<dl>
+					<dt>Anti-Aliasing</dt>
+						<dd><a href="#" id="togglealias" onclick="toggle('alias')" title="Smoothing">UNKOWN</a></dd>
+				</dl>
+	
+			<h4>Visuals</h4>
+				<dl>
+					<dt>Decorations</dt>
+						<dd><a href="#" id="toggledecor" onclick="toggle('decor')" title="Barrels, Tables, etc.">UNKOWN</a></dd>
+					<dt>Animations</dt>
+						<dd><a href="#" id="toggleanim" onclick="toggle('anim')" title="Animations are Incomplete">UNKOWN</a></dd>
+				</dl>
+			</div>
+				
+			<h4>Controls</h4>
+				<dl>
+					<dt>Up</dt>
+						<dd><button id="controlup" onclick="changeKeycode('up')">A</button></dd>
+					<dt>Down</dt>
+						<dd><button id="controldown" onclick="changeKeycode('down')">A</button></dd>
+					<dt>Left</dt>
+						<dd><button id="controlleft" onclick="changeKeycode('left')">A</button></dd>
+					<dt>Right</dt>
+						<dd><button id="controlright" onclick="changeKeycode('right')">A</button></dd>
+					<dt>Restart</dt>
+						<dd><button id="controlrestart" onclick="changeKeycode('restart')">A</button></dd>
+					<dt>Pause</dt>
+						<dd><button id="controlpause" onclick="changeKeycode('pause')">A</button></dd>
+				</dl>
+				
+			<h4>Reset</h4>
+				<dl>
+					<dt>Visuals</dt>
+						<dd><a href="#" class="uhoh" onclick="error('',1,0,'viz')">RESET</a></dd>
+					<dt>Controls</dt>
+						<dd><a href="#" class="uhoh" onclick="error('',1,0,'con')">RESET</a></dd>
+					<dt>Gamedata and Custom Levels</dt>
+						<dd><a href="#" class="uhoh" onclick="error('',1,0,'del')">DELETE</a></dd>
+				</dl>
+
+		</div></div>
+		
+		<div id="how"><a class="close" href="#" onclick="unNav()"></a><div>
+			<h3>How to Play</h3>
+			
+			<div id="howdivs">
+				<div id="how1">
+					<p>Help Yoran move to the next room. Change your controls in options.</p>
+					<div>
+					<img id="how1img" src="img/how1.jpg" width="480" height="1024" alt="Yoran is moved to the open green door."/>
+					</div>
+				</div>
+				<div id="how2">
+					<p>When you encounter boxes, push them out of the way.<br/>
+					
+					Note: Due to an unusual accident, Yoran can only push one box at a time.</p>
+					
+					<div>
+					<img id="how2img" src="img/how2.jpg" width="480" height="512" alt="Yoran pushes a a box out of the way."/>
+					</div>
+				</div>
+				<div id="how3">
+					<p>Toxic waste is also a hazard.  Push boxes into it, so you can cross it.</p>
+					
+					<div>
+					<img id="how3img" src="img/how3.jpg" width="480" height="512" alt="Yoran pushes boxes into toxic waste so he can cross it."/>
+					</div>
+				</div>
+				<div id="how4">
+					<p>You may need to moves boxes onto sensors to complete the level or open the goal door.</p>
+					
+					<div>
+					<img id="how4img" src="img/how4.jpg" width="480" height="512" alt="Yoran pushes a box onto a sensor to open the door."/>
+					</div>
+				</div>
+			</div>
+			
+			<div class="listnav">
+				<div>
+					<a href="#" class="left" onclick="viewHT('left')"></a>
+					<ul>
+						<li><a href="#" class="selected" id="how1-nav" onclick="viewHT(1)"></a></li>
+						<li><a href="#" id="how2-nav" onclick="viewHT(2)"></a></li>
+						<li><a href="#" id="how3-nav" onclick="viewHT(3)"></a></li>
+						<li><a href="#" id="how4-nav" onclick="viewHT(4)"></a></li>
+					</ul>
+					<a href="#" class="right" onclick="viewHT('right')"></a>
+				</div>
+			</div>
+		</div></div>
+		
+		<div id="credits"><a class="close" href="#" onclick="unNav()"></a><div>
+			<h3>Credits</h3>
+			
+			<h4>Programming</h4>
+				<ul>
+					<li>Mostly by Sveciaost</li>
+				</ul>
+
+			<h4>Models and Textures</h4>
+				<ul>
+					<li><a href="http://opengameart.org/content/big-guy" target="_blank">Big Guy</a> by "piacenti"</li>
+					<li><a href="http://opengameart.org/content/metal-barrels-pack" target="_blank">Metal Barrels Pack</a> by "yughues"</li>
+					<li><a href="http://opengameart.org/content/mortis-and-tenon-table" target="_blank">Mortis and Tenon Table</a> by "ulf"</li>
+					<li><a href="http://opengameart.org/content/industrial-metal-door" target="_blank">Industrial Metal Door</a> by "ulf"</li>
+				</ul>
+				<ul>
+					<li><a href="http://opengameart.org/node/7971" target="_blank">Metal Tile 1</a> by "Osmic" (with darkening and overlayed images)</li>
+					<li><a href="http://seamless-pixels.blogspot.com/p/free-seamless-concrete-textures.html" target="_blank">Concrete</a> from Seamless Pixels</li>
+					<li><a href="http://free-texture-site.blogspot.com/search/label/Wood" target="_blank">Wooden Crate Texture</a> from Free Texture Site</li>
+				</ul>
+	
+			<h4>Game Design</h4>
+				<ul>
+					<li>"Main" and "Tutorial" by Sveiaost</li>
+					<li>"SokEvo", "SokHard" and "SokWhole" by <a href="http://leehaywood.org/games/sokoban/" target="_blank">Lee J. Haywood</a></li>
+					<li>"Microban" and "Mas Microban" by <a href="http://www.onlinespiele-sammlung.de/sokoban/sokobangames/skinner/" target="_blank">David W. Skinner</a></li>
+				</ul>
+			
+			<h4>Information</h4>
+				<ul>
+					<li>Works best in Google Chrome, Firefox or Internet Explorer 11</li>
+					<li>Safari and Internet Explorer 10 are supported by disabling the WebGL Renderer</li>
+				</ul>
+		</div></div>
+		
+		<div id="add"><a class="close" href="#" onclick="unNav()"></a><div>
+			<h3>Add Levels</h3>
+			<p>Add levels in the <a href="http://www.sokobano.de/wiki/index.php?title=Sok_format" target="_blank">SOK format</a>, or our own <a href="format.html" target="_blank">maze format</a>.  
+			Feel free to create your own too!</p>
+			<form id="addForm">
+				<fieldset>
+				<legend>Select the Format:</legend>
+				<input type="radio" name="format" value="maze" id="maze" onclick="sokonly(0)" checked="checked"><label for="maze">Maze Format</label><br/>
+				<input type="radio" name="format" value="sok" id="sok" onclick="sokonly(1)"><label for="sok">SOK Format</label>
+				</fieldset>
+				<fieldset id="SOKonly">
+					<label for="addname">Pack Name:</label><input type="text" id="addname"/><br/>
+					<label for="addauth">Pack Author:</label><input type="text" id="addauth"/>
+				</fieldset>
+				<textarea id="addtext">; Copy and paste the levels (and metadata) in text format here.
+</textarea>
+				<fieldset id="button">
+					<input type="button" id="parse" value="Add Levels!" onclick="textParse()"/>
+				</fieldset>
+			</form>
+		</div></div>
+	</div>
+
+</div>
+
+<div id="error"><a class="close" href="#" id="errclose" onclick="errHide()"></a><div>
+	<h3 id="errhead">Uh Oh!</h3>
+	<p id="errtxt"></p>
+	<div id="erraddtxt">
+	
+	</div>
+</div></div>
+
+<div id="overlay7"></div>
+<div id="overlay3"></div>
+<div id="overlay1"></div>
+
+<div id="view"></div>
+
+<div id="unnav"></div>
+<button id="blur-hack"></button>
+
+<script src="js/three/three.min.js"></script>
+<script src="js/three/OrbitControls.js"></script>
+
+<script type="text/javascript" src="js/setup.js"></script>
+<script type="text/javascript" src="js/options.js"></script>
+<script type="text/javascript" src="js/nav.js"></script>
+<script type="text/javascript" src="js/draw.js"></script>
+<script type="text/javascript" src="js/movement.js"></script>
+
+<script type="text/javascript" src="js/packs.js"></script>
+<script type="text/javascript" src="js/packs/main.js"></script>
+
+<script type="text/javascript" src="js/packs/haywood.js"></script>
+<script type="text/javascript" src="js/packs/skinner.js"></script>
+
+<script type="text/javascript" src="js/parser.js"></script>
+
+</body>
+</html>

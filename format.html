@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>'Maze' Format</title>
+</head>
+<body>
+<h1>Maze Format</h1>
+<p>Maze levels can be stored in a plain text file, much like the <a href="http://sokobano.de/wiki/index.php?title=Sok_format">SOK format</a>.</p>
+<p>Any line which begins with a semi-colon (;) is a comment. These lines are completely ignored by the parser.</p>
+<h2>Header</h2>
+<p>The file <strong>must</strong> begin with the title of the levelpack and the author. One or more lines after the header must be completely blank.</p>
+<pre>; This is a comment
+Title: SokoMaze
+Author: Yoran
+</pre>
+<h2>Levels</h2>
+<p>Levels <strong>must</strong> be separated by <strong>completely</strong> blank lines.  The level format is the same as the <a href="http://www.sokobano.de/wiki/index.php?title=Level_format">level format for Sokoban</a>, with some additions.  Unlike Sokoban's level format however, levels do not have to be surrounded by walls (#).<p>
+<h3>Sokoban Level Format</h3>
+<table>
+<tr><th>Level Element</th><th>Character</th></tr>
+<tr><td>Wall</td><td>#</td></tr>
+<tr><td>Player</td><td>@</td></tr>
+<tr><td>Player on Goal Square (sensor)</td><td>+</td></tr>
+<tr><td>Box</td><td>$</td></tr>
+<tr><td>Box on Goal Square (sensor)</td><td>*</td></tr>
+<tr><td>Goal Square (sensor)</td><td>.</td></tr>
+<tr><td>Floor</td><td> [SPACE]</td></tr>
+</table>
+<h3>Maze Additions</h3>
+<h4>Toxic Waste</h4>
+<p>The player cannot cross toxic waste unless a box is pushed into it.</p>
+<table>
+<tr><th>Level Element</th><th>Character</th></tr>
+<tr><td>Toxic Waste</td><td>~</td></tr>
+<tr><td>Block in Water</td><td>`</td></tr>
+<tr><td>Player on a block in water</td><td>^</td></tr>
+<tr><td>Block on top of a block</td><td>!</td></tr>
+</table>
+
+<h4>Goal Door</h4>
+<p>If there's no goal door, the level will end when all the sensors (Goal Squares) have boxes on them.</p>
+<table>
+	<tr><th>Level Element</th><th>Character</th></tr>
+	<tr><td>Goal Door at Top</td><td>H</td></tr>
+	<tr><td>Goal Door at Right</td><td>I</td></tr>
+	<tr><td>Goal Door at Bottom</td><td>J</td></tr>
+	<tr><td>Goal Door at Left</td><td>K</td></tr>
+</table>
+
+<h4>Decoration</h4>
+<p>Decorations aren't needed, but can make the levels look less bland.</p>
+
+<p>Tables stretch across two spaces.  Put a "%" (decoration floor - floor the player cannot walk on) below a vertical table and to the right of a horizontal table.</p>
+<table>
+	<tr><th>Level Element</th><th>Character(s)</th></tr>
+	<tr><td>Decoration Floor (Used for tables)</td><td>%</td></tr>
+	<tr><td>Horizontal Tables</td><td>Z,Y and X</td></tr>
+	<tr><td>Vertical Tables</td><td>W, V and U</td></tr>
+	<tr><td>Barrels</td><td>1, 2, 3, 4, 5, 6 and 7</td></tr>
+	<tr><td>Concrete Pole</td><td>:</td></tr>
+	<tr><td>Horizontal Wall</td><td>-</td></tr>
+	<tr><td>Vertical Wall</td><td>?</td></tr>
+</table>
+
+<h2>A Complete File</h2>
+<pre>; This is a comment
+Title: SokoMaze
+Author: Yoran
+
+;1
+    #
+@   I
+    #
+
+;2
+# ###
+ $ $ 
+  # #
+ @# #
+###J#
+
+;3
+##H##
+     
+~~~~~
+~~~~~
+ $ $ 
+  @  
+
+;4
+#H##
+   #
+#.$ 
+#$  
+#@  </pre>
+</body>
+</html>
