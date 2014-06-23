@@ -11,7 +11,7 @@ function resetBoard2d(){
 	},15);
 	
 	var classMatcher = /(?:^|\s)box(?:\s|$)/;
-	var els = document.getElementById("twocont").getElementsByTagName("img");
+	var els = document.getElementById("twocont").getElementsByTagName("span");
 	for (var i=els.length;i--;){
 		if (classMatcher.test(els[i].className)){
 			els[i].parentNode.removeChild(els[i]);
@@ -21,14 +21,12 @@ function resetBoard2d(){
 	var cont = document.getElementById('twocont');
 	var html = '';
 	function addImage(img,i,j,z,id){
-		var x = Math.round(i * imgsize);
-		var y = Math.round(j * imgsize);
-		var src = '2d/'+ img +'.png';
-		html += '<img src="'+ src +'" class="'+img+'" width="'+imgsize+'" height="'+imgsize+'" alt="'+img+'" style="top:'+y+'px;left:'+x+'px;z-index:'+z+';"';
-		if (id){
-			html += ' id="'+id+'"';
-		}
-		html += '/>';
+		var x = i * imgsize;
+		var y = j * imgsize;
+		var src;
+
+		src = '2d/'+ img +'.png';
+		html += '<span class="'+img+'" style="width:'+imgsize+'px;height:'+imgsize+'px;top:'+y+'px;left:'+x+'px;z-index:'+z+';" id="'+id+'"></span>';
 	}
 	function drawBoxesAgain(){
 		for (var j=0; j<board.length; j++){
@@ -51,11 +49,11 @@ function resetBoard2d(){
 	
 	if (soko === false){
 		if (allPressed() === true){
-			setVis('2dopened','visible');
-			setVis('2dclosed','hidden');
+			setVis('tdopened','visible');
+			setVis('tdclosed','hidden');
 		} else {
-			setVis('2dopened','hidden');
-			setVis('2dclosed','visible');
+			setVis('tdopened','hidden');
+			setVis('tdclosed','visible');
 		}
 	}
 	
@@ -97,31 +95,45 @@ function draw2d(){
 		} else {
 			src = '2d/'+ img +'.jpg';
 		}
-		if (id === '2dclosed'){
+		if (id === 'tdclosed'){
 			src = '2d/goalR.jpg';
-		} else if (id === '2dopened'){
+		} else if (id === 'tdopened'){
 			src = '2d/goalG.jpg';
 		}
 		if (ie === true){
-			if (id === '2dclosed'){
+			if (id === 'tdclosed'){
 				src = '2d/ieGR.png';
-			} else if (id === '2dopened'){
+			} else if (id === 'tdopened'){
 				src = '2d/ieGG.png';
 			}
 		}
 		
-		html += '<img src="'+ src +'" class="'+img+'" width="'+imgsize+'" height="'+imgsize+'" alt="'+img+'" style="top:'+y+'px;left:'+x+'px;z-index:'+z+';"';
+		html += '<span class="'+img+'" style="width:'+imgsize+'px;height:'+imgsize+'px;top:'+y+'px;left:'+x+'px;z-index:'+z+';"';
 		if (id){
 			html += ' id="'+id+'"';
 		}
-		html += '/>';
+		html += '></span>';
 	}
 	
+	function addRealImage(img,i,j,z,id){
+		var x = i * imgsize;
+		var y = j * imgsize;
+		var src;
+	
+		if (id === 'tdclosed'){
+			src = '2d/goalR.jpg';
+		} else if (id === 'tdopened'){
+			src = '2d/goalG.jpg';
+		}
+
+		html += '<img src="'+ src +'" class="'+img+'" width="'+imgsize+'" height="'+imgsize+'" alt="'+img+'" style="top:'+y+'px;left:'+x+'px;z-index:'+z+';" id="'+id+'"/>';
+	}
+
 	function addColor(color,i,j,z){
 		var x = i * imgsize;
 		var y = j * imgsize;
 
-		html += '<span style="background:'+color+';top:'+y+'px;left:'+x+'px;width:'+imgsize+'px;height:'+imgsize+'px;z-index:'+z+';"></span>';
+		html += '<span class="color" style="background:'+color+';top:'+y+'px;left:'+x+'px;width:'+imgsize+'px;height:'+imgsize+'px;z-index:'+z+';"></span>';
 	}
 
 	for (var j=0; j<board.length; j++){
@@ -152,19 +164,19 @@ function draw2d(){
 				addImage('box',i,j,3,i+'-'+j+'-'+'1');
 			}
 			if (val === 'H' || val === 'I' || val === 'J' || val === 'K'){
-				addImage('goalR' + val,i,j,0,'2dclosed');
-				addImage('goalG' + val,i,j,0,'2dopened');
+				addImage('goalR' + val,i,j,0,'tdclosed');
+				addImage('goalG' + val,i,j,0,'tdopened');
 			}
 		}
 	}
 	cont.innerHTML = html;
 	if (soko === false){
 		if (allPressed() === true){
-			setVis('2dopened','visible');
-			setVis('2dclosed','hidden');
+			setVis('tdopened','visible');
+			setVis('tdclosed','hidden');
 		} else {
-			setVis('2dopened','hidden');
-			setVis('2dclosed','visible');
+			setVis('tdopened','hidden');
+			setVis('tdclosed','visible');
 		}
 	}
 }

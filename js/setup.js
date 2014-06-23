@@ -22,6 +22,31 @@ var loadedModels = 0;
 
 var waitingFor;
 
+var ie = false;
+var vertCenter = function(){
+	var divs = document.querySelectorAll('#menu>div, #playing>div, #pages>div, #hudpages>div, #error');
+	var contWIDTH = window.innerWidth,
+		contHEIGHT = window.innerHeight;
+	for (var i=0; i<divs.length; i++){
+		var h = divs[i].offsetHeight,
+		w = divs[i].offsetWidth;
+		if (contHEIGHT>h){
+			divs[i].style.marginTop = -h/2 + 'px';
+			divs[i].style.top = '50%';
+		} else{
+			divs[i].style.marginTop = '0px';
+			divs[i].style.top = '10px';
+		}
+		if (contWIDTH>w){
+			divs[i].style.marginLeft = -w/2 + 'px';
+			divs[i].style.left = '50%';
+		} else{
+			divs[i].style.marginLeft = '0px';
+			divs[i].style.left = '10px';
+		}
+	}
+}
+
 function resized(){
 	if (curRender !== 'Image'){
 		var contWIDTH = window.innerWidth - 10,
@@ -81,7 +106,17 @@ function init() {
 	function useImage(){
 		curRender = 'Image';
 		setDisp('playtwo','block');
-		document.getElementById("preImageLoad").innerHTML = '<img src="2d/box.png" alt="box pre-load"/><img src="2d/char.png" alt="char pre-load"/><img src="2d/cm.jpg" alt="cement pre-load"/><img src="2d/goalG.jpg" alt="goal open pre-load"/><img src="2d/goalR.jpg" alt="goal closed pre-load"/><img src="2d/metA.jpg" alt="sensor A pre-load"/><img src="2d/metB.jpg" alt="sensor B pre-load"/>';
+		
+		
+		if (ie === false){
+			var headID = document.getElementsByTagName("head")[0];         
+			var cssNode = document.createElement('link');
+			cssNode.type = 'text/css';
+			cssNode.rel = 'stylesheet';
+			cssNode.href = 'image.css';
+			headID.appendChild(cssNode);
+		}
+		
 		mainMenu();
 	}
 

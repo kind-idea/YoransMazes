@@ -1,0 +1,27 @@
+#twocont span.cm{
+	background-image:url('2d/cm.jpg');
+	background-size:contain;
+}
+#twocont span.box{
+	background-image:url('2d/box.png');
+	background-size:contain;
+}
+#twocont span.char{
+	background-image:url('2d/char.png');
+	background-size:contain;
+}
+#twocont span.metA{
+	background-image:url('2d/metA.jpg');
+	background-size:contain;
+}
+#twocont span.metB{
+	background-image:url('2d/metB.jpg');
+	background-size:contain;
+}
+
+#twocont #tdclosed{
+	content:url('2d/goalR.jpg');
+}
+#twocont #tdopened{
+	content:url('2d/goalG.jpg');
+}

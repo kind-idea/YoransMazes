@@ -2,10 +2,6 @@
 	margin:0;
 	padding:0;
 }
-#preImageLoad{
-	position:absolute;
-	left:-9999999px;
-}
 #overlay7,#overlay3,#overlay1{
 	display:none;
 	z-index:-1;
@@ -14,21 +10,18 @@
 	right:0;
 	bottom:0;
 	left:0;
+	z-index:10;
 	background:#000;
-	opacity:0;
+	-webkit-opacity:0.3;
+	-khtml-opacity:0.3;
+	-moz-opacity:0.3;
+	-ms-opacity:0.3;
+	-o-opacity:0.3;
+	opacity:0.3;
 }
 #overlay7{z-index:70}
 #overlay3{z-index:30}
-#overlay1{
-	z-index:10;
-	background:#000;
-	-webkit-opacity:0.4;
-	-khtml-opacity:0.4;
-	-moz-opacity:0.4;
-	-ms-opacity:0.4;
-	-o-opacity:0.4;
-	opacity:0.4;
-}
+#overlay1{z-index:10;}
 #playtwo{
 	display:none;
 	z-index:1;
@@ -43,10 +36,11 @@
 	left:50%;
 	top:50%;
 }
-#twocont img,#twocont span{
+#twocont span,#twocont img{
 	position:absolute;
 }
-#twocont span{
+
+#twocont span.color{
 	-webkit-opacity:0.3;
 	-khtml-opacity:0.3;
 	-moz-opacity:0.3;
@@ -54,7 +48,7 @@
 	-o-opacity:0.3;
 	opacity:0.3;
 }
-#twocont img.goalRH, #twocont img.goalGH{
+#twocont .goalRH, #twocont .goalGH{
 	-webkit-transform:rotate(270deg);
 	-khtml-transform:rotate(270deg);
 	-moz-transform:rotate(270deg);
@@ -62,7 +56,7 @@
 	-o-transform:rotate(270deg);
 	transform:rotate(270deg);
 }
-#twocont img.goalRJ, #twocont img.goalGJ{
+#twocont .goalRJ, #twocont .goalGJ{
 	-webkit-transform:rotate(90deg);
 	-khtml-transform:rotate(90deg);
 	-moz-transform:rotate(90deg);
@@ -70,7 +64,7 @@
 	-o-transform:rotate(90deg);
 	transform:rotate(90deg);
 }
-#twocont img.goalRK, #twocont img.goalGK{
+#twocont .goalRK, #twocont .goalGK{
 	-webkit-transform:rotate(180deg);
 	-khtml-transform:rotate(180deg);
 	-moz-transform:rotate(180deg);
@@ -85,6 +79,7 @@ body{
 	text-align:center;
 }
 #loading{
+	display:none;
 	position:fixed;
 	top:0;
 	bottom:0;
@@ -93,7 +88,11 @@ body{
 	background:#000;
 	z-index:65;
 }
-#loadico{
+.loadico{
+	display:inline-block;
+	background:url(load.png);
+	width:138px;
+	height:26px;
 	position:absolute;
 	left:50%;
 	top:50%;
@@ -242,6 +241,9 @@ a#ref.anim span{
 h5{
 	font-size:17px;
 }
+#hud{
+	display:none;
+}
 #hud div{
 	z-index:9;
 }
@@ -282,6 +284,10 @@ h5{
 	background: -o-linear-gradient(top,  #9a9a9a 0%,#cfcfcf 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top,  #9a9a9a 0%,#cfcfcf 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #9a9a9a 0%,#cfcfcf 100%); /* W3C */
+}
+
+#page{
+	display:none;
 }
 
 #menu>div, #playing>div, #pages>div, #hudpages>div, #error{

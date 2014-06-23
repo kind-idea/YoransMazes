@@ -5,53 +5,30 @@
 <title>Yoran's Mazes</title>
 <meta name="description" content="HTML5 and WebGL puzzle game.  Based off of Sokoban.">
 <link href='http://fonts.googleapis.com/css?family=Emblema+One%7cBlack+Ops+One%7cGruppo' rel='stylesheet' type='text/css'>
+
+<link rel="icon" type="image/png" href="favicon.png"/>
+
 <link rel="stylesheet" type="text/css" href="style.css">
-<link rel="icon" type="image/png" href="favicon.png" />
 
 <!--[if lte IE 9]>
 <link rel="stylesheet" type="text/css" href="ie.css">
 <![endif]-->
 
-<!--[if !lte IE 8]><!-->
-<script type="text/javascript">
-var ie = false;
-function vertCenter(){
-	var divs = document.querySelectorAll('#menu>div, #playing>div, #pages>div, #hudpages>div, #error');
-	var contWIDTH = window.innerWidth,
-		contHEIGHT = window.innerHeight;
-	for (var i=0; i<divs.length; i++){
-		var h = divs[i].offsetHeight,
-		w = divs[i].offsetWidth;
-		if (contHEIGHT>h){
-			divs[i].style.marginTop = -h/2 + 'px';
-			divs[i].style.top = '50%';
-		} else{
-			divs[i].style.marginTop = '0px';
-			divs[i].style.top = '10px';
-		}
-		if (contWIDTH>w){
-			divs[i].style.marginLeft = -w/2 + 'px';
-			divs[i].style.left = '50%';
-		} else{
-			divs[i].style.marginLeft = '0px';
-			divs[i].style.left = '10px';
-		}
-	}
-}
-</script>
-<!--<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" type="text/css" href="ie8.css">
+<![endif]-->
 
 </head>
 <body onload="vertCenter();init()" onresize="resized()">
 
-<div id="loading" style="display:none">
-	<img 
-		id="loadico"
-		alt="Loading..."
-		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAAAaCAAAAABNipv7AAADFElEQVR4Ac3Ua2iVBRgH8N85uktqSrl5VzrqdFANEUNdibf6kIJa2adCupBKhUFk0of6YvWhIogkkAoiCBHJii7rviKK1MJmIE5Xpmmpy6VO3dzmnhqnuRcPOj1O1u/bw/Pn5c/D+74uSaqir55TMuk6F6vuUCXwYlTpOSuiwcU6EjOBqtitx1zagR954O3/S5WdK/WctN7UzVX6VVz/59b9zijNFP19uL3pGNBnzJjmw2noUwLNR2UNKj5+Qr+bS6t/JRFt1NCa52ubWtkS/6oeLmvud9EhXssWX3UwO86iLDqsl2VjPGXxoYj4vDAnmtdVUu8sbH3zh1G3z/rplm0ws6qgYdPezJSrgZceVLslxk9N4+SnlGUkLFzX9n77vLlrlp4dzesqd8fx2RhUHd/ANfXxVn+siVdheZxckvyYrU5e5cvmLeN5OJr65kTzqFK4L54HE0/HbaRr4j3OVJnSEnc6d5XYNxRXRozNiebxBU0caS2o/cpcZlScXqXLsoJNG5zbqTsOorHVgJxoHlXKnf4NqFPOItt36LLIRuexZhNocUUimneVkRragENGklGny4CS5JjrGBDSiWjeVfYYXAAMt4chDgKj6Zhkx9Ji3UhE862yQ3oCUG4H9YaBpQukqJcd+6wvknIeOdF8quza5SEw6UYfsltlMaa9TAGNh82B52brTjIasvplJE0oBIllmtR/0PaY+xdj2Os++oxPDFnNre82rTdQx3jPdEXPPlrVqDuJaDsw9Y9fXtBlXe3vYyG5XBGd7oO10f7x028ciLpx8EXEzto4Of/e+B6Z5mjZ3BDbBif+K0dqampmdf74QWNMT0SPRiXZB0dToU4jIuJJSCzPrmLJXxHRum4guOqDiPh2khnRXIib9kc0v9JfokqHBblVOqPptpgM3BVR7YxUbWSfkbtMyiy4oVinskXX6lJUOa9UtxLRoREjZM1ZPlCXkhVTQXJ5eS2L/XrXqA0VYNqBeMKFSrkcRu+NH7f+PGjywvTX80/oVUWPb48O9c8U6uWroHzcmGN7N59y4f4BLgiM/Uj19SQAAAAASUVORK5CYII="
-	/>
+
+<div id="loadingPage">
+	<span class="loadico"></span>
 </div>
-<div id="hud" style="display:none;">
+<div id="loading">
+	<span class="loadico"></span>
+</div>
+<div id="hud">
 		<div id="links">
 			<a title="Pause" id="pauseico" href="#" onclick="pause()"></a>
 			<a title="List of Levels" id="listico" href="#" onclick="nav('select','yes')"></a>
@@ -87,7 +64,7 @@ function vertCenter(){
 		</div>
 	</div>
 
-<div id="page" style="display:none;">
+<div id="page">
 	<div id="menu">
 		<div id="main"><div>
 			<h1>Yoran's Mazes</h1>
@@ -255,9 +232,10 @@ function vertCenter(){
 		<div id="credits"><a class="close" href="#" onclick="unNav()"></a><div>
 			<h3>Credits</h3>
 			
-			<h4>Programming</h4>
+			<h4>Javascript Libraries</h4>
 				<ul>
-					<li>Mostly by Sveciaost</li>
+					<li><a href="http://threejs.org/" target="_blank">three.js</a> for 3D graphics</li>
+					<li><a href="http://bestiejs.github.io/json3/" target="_blank">JSON3</a> for Internet Explorer support</li>
 				</ul>
 
 			<h4>Models and Textures</h4>
@@ -282,7 +260,7 @@ function vertCenter(){
 			
 			<h4>Information</h4>
 				<ul>
-					<li>If there's any problems, change the renderer in options.</li>
+					<li>If there's any problems, change the renderer in options</li>
 				</ul>
 		</div></div>
 		
@@ -333,7 +311,7 @@ function vertCenter(){
 <div id="unnav"></div>
 <button id="blur-hack"></button>
 
-<div id="preImageLoad"></div>
+<script type="text/javascript" src="js/setup.js"></script>
 
 <!--[if lte IE 7]>
 <script type="text/javascript">
@@ -352,7 +330,6 @@ function vertCenter(){
 <script src="js/third/OrbitControls.js"></script>
 <!--<![endif]-->
 
-<script type="text/javascript" src="js/setup.js"></script>
 <script type="text/javascript" src="js/models.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
 <script type="text/javascript" src="js/nav.js"></script>

@@ -1,5 +1,5 @@
-var ie = true;
-function vertCenter(){
+ie = true;
+vertCenter = function(){
 	var divs = document.querySelectorAll('#menu>div, #playing>div, #pages>div, #hudpages>div, #error');
 	var contWIDTH = window.innerWidth,
 		contHEIGHT = window.innerHeight;

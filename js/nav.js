@@ -82,6 +82,7 @@ function mainMenu(){
 		clearAll2d();
 	}
 	isPaused = false;
+	setDisp('loadingPage','none');
 	setDisp('page','block');
 	makePacksTable();
 	actions(false);

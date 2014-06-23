@@ -134,13 +134,13 @@ function move2d(dir){
 		if (soko === true){
 			onWin();
 		} else if (soko === false){
-			setVis('2dopened','visible');
-			setVis('2dclosed','hidden');
+			setVis('tdopened','visible');
+			setVis('tdclosed','hidden');
 		}
 	} else {
 		if (soko === false){
-			setVis('2dopened','hidden');
-			setVis('2dclosed','visible');
+			setVis('tdopened','hidden');
+			setVis('tdclosed','visible');
 		}
 	}
 	optimX = charX * imgsize;
