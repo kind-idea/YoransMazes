@@ -1,33 +1,3 @@
-var charXO, charYO, charX, charY, charRot;
-
-String.prototype.setCharAt = function(index, char) {
-	return this.substr(0, index) + char + this.substr(index + 1);
-};
-
-function findChar(){
-	// Get the position of char
-	for (var j=0; j<board.length; j++){
-		charY = j;
-		charX = board[j].indexOf('@');
-		if (charX !== -1){
-			charXO = charX;
-			charYO = charY;
-			break;
-		}
-		charX = board[j].indexOf('^');
-		if (charX !== -1){
-			charXO = charX;
-			charYO = charY;
-			break;
-		}
-		charX = board[j].indexOf('+');
-		if (charX !== -1){
-			charXO = charX;
-			charYO = charY;
-			break;
-		}
-	}
-}
 var optimX, optimY, curRot, rotDiff, isRoted;
 
 function move(dir){
@@ -212,63 +182,6 @@ function move(dir){
 		charMesh.position.x = optimX;
 		charMesh.rotation.z = charRot * Math.PI;
 		render();
-	}
-}
-
-function allPressed(){
-	var slice = -1;
-	for (var j=0; j<board.length; j++){
-		slice = board[j].indexOf('.');
-		if (slice !== -1){ // If we find a button unpressed
-			return false;
-		} else if (slice === -1 && j === board.length - 1){ // If there are not buttons unpressed
-			return true;
-		}
-	}
-}
-
-document.onkeydown = checkKey;
-function checkKey(e) {
-	if (actionsEnabled === 1) {
-		e = e || window.event;
-		if (e.keyCode === keycode.up) {
-			move('up');
-			updateScores();
-		}
-		else if (e.keyCode === keycode.down) {
-			move('down');
-			updateScores();
-		}
-		else if (e.keyCode === keycode.left) {
-			move('left');
-			updateScores();
-		}
-		else if (e.keyCode === keycode.right) {
-			move('right');
-			updateScores();
-		}
-		else if (e.keyCode === keycode.restart) {
-			resetBoard();
-			updateScores();
-		}
-		else if (e.keyCode === keycode.pause){
-			pause();
-		}
-	} else if(setKeyAction === 1){
-		if (e.keyCode === 27){
-			return;
-		}
-		saveKeycode(e.keyCode);
-	} else if (e.keyCode === 27){
-		if (theresError === true){
-			if (canCloseError === true){
-				errHide();
-			}	
-		} else{
-			unNav();
-		}
-	} else if (e.keyCode === keycode.pause && isPaused === true){
-		unpause();
 	}
 }
 

@@ -111,7 +111,7 @@ function textParse(){
 		
 	} else{
 		name = document.getElementById('addname').value;
-		condensedN = name.replace(/[\s0-9]/gi, '');
+		condensedN = name.replace(/[\s]/gi, '');
 		author = document.getElementById('addauth').value;
 
 		getFileHeader();

@@ -49,7 +49,6 @@ packs.main.level[5] = [
 	' @###J#'
 ];
 packs.main.level[6] = [
-	'##H##',
 	'    .',
 	'~~~~~',
 	'$$###',

@@ -1,0 +1,26 @@
+#overlay7,#overlay3{
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=0);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	filter:alpha(opacity=0);
+}
+#overlay1{
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=40);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);
+	filter:alpha(opacity=40);
+}
+
+#twocont span{
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha"(Opacity=30);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=30);
+	filter:alpha(opacity=30);
+}
+
+#hudpages button{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfcfcf', endColorstr='#9a9a9a',GradientType=0 ); /* IE6-9 */
+}
+#hudpages button:active{
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9a9a9a', endColorstr='#cfcfcf',GradientType=0 ); /* IE6-9 */
+}
+a.close{
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#000000', Direction=90, Strength=3)
+}

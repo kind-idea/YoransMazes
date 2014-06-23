@@ -6,8 +6,15 @@
 <meta name="description" content="HTML5 and WebGL puzzle game.  Based off of Sokoban.">
 <link href='http://fonts.googleapis.com/css?family=Emblema+One%7cBlack+Ops+One%7cGruppo' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" type="image/png" href="favicon.png" />
 
+<!--[if lte IE 9]>
+<link rel="stylesheet" type="text/css" href="ie.css">
+<![endif]-->
+
+<!--[if !lte IE 8]><!-->
 <script type="text/javascript">
+var ie = false;
 function vertCenter(){
 	var divs = document.querySelectorAll('#menu>div, #playing>div, #pages>div, #hudpages>div, #error');
 	var contWIDTH = window.innerWidth,
@@ -31,19 +38,20 @@ function vertCenter(){
 		}
 	}
 }
-window.onload = vertCenter;
 </script>
-</head>
-<body onload="init()" onresize="resized()">
+<!--<![endif]-->
 
-<div id="loading">
+</head>
+<body onload="vertCenter();init()" onresize="resized()">
+
+<div id="loading" style="display:none">
 	<img 
 		id="loadico"
 		alt="Loading..."
 		src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAAAaCAAAAABNipv7AAADFElEQVR4Ac3Ua2iVBRgH8N85uktqSrl5VzrqdFANEUNdibf6kIJa2adCupBKhUFk0of6YvWhIogkkAoiCBHJii7rviKK1MJmIE5Xpmmpy6VO3dzmnhqnuRcPOj1O1u/bw/Pn5c/D+74uSaqir55TMuk6F6vuUCXwYlTpOSuiwcU6EjOBqtitx1zagR954O3/S5WdK/WctN7UzVX6VVz/59b9zijNFP19uL3pGNBnzJjmw2noUwLNR2UNKj5+Qr+bS6t/JRFt1NCa52ubWtkS/6oeLmvud9EhXssWX3UwO86iLDqsl2VjPGXxoYj4vDAnmtdVUu8sbH3zh1G3z/rplm0ws6qgYdPezJSrgZceVLslxk9N4+SnlGUkLFzX9n77vLlrlp4dzesqd8fx2RhUHd/ANfXxVn+siVdheZxckvyYrU5e5cvmLeN5OJr65kTzqFK4L54HE0/HbaRr4j3OVJnSEnc6d5XYNxRXRozNiebxBU0caS2o/cpcZlScXqXLsoJNG5zbqTsOorHVgJxoHlXKnf4NqFPOItt36LLIRuexZhNocUUimneVkRragENGklGny4CS5JjrGBDSiWjeVfYYXAAMt4chDgKj6Zhkx9Ji3UhE862yQ3oCUG4H9YaBpQukqJcd+6wvknIeOdF8quza5SEw6UYfsltlMaa9TAGNh82B52brTjIasvplJE0oBIllmtR/0PaY+xdj2Os++oxPDFnNre82rTdQx3jPdEXPPlrVqDuJaDsw9Y9fXtBlXe3vYyG5XBGd7oO10f7x028ciLpx8EXEzto4Of/e+B6Z5mjZ3BDbBif+K0dqampmdf74QWNMT0SPRiXZB0dToU4jIuJJSCzPrmLJXxHRum4guOqDiPh2khnRXIib9kc0v9JfokqHBblVOqPptpgM3BVR7YxUbWSfkbtMyiy4oVinskXX6lJUOa9UtxLRoREjZM1ZPlCXkhVTQXJ5eS2L/XrXqA0VYNqBeMKFSrkcRu+NH7f+PGjywvTX80/oVUWPb48O9c8U6uWroHzcmGN7N59y4f4BLgiM/Uj19SQAAAAASUVORK5CYII="
 	/>
 </div>
-<div id="hud">
+<div id="hud" style="display:none;">
 		<div id="links">
 			<a title="Pause" id="pauseico" href="#" onclick="pause()"></a>
 			<a title="List of Levels" id="listico" href="#" onclick="nav('select','yes')"></a>
@@ -79,7 +87,7 @@ window.onload = vertCenter;
 		</div>
 	</div>
 
-<div id="page">
+<div id="page" style="display:none;">
 	<div id="menu">
 		<div id="main"><div>
 			<h1>Yoran's Mazes</h1>
@@ -111,17 +119,20 @@ window.onload = vertCenter;
 			<h3>Levelpacks</h3>
 
 				<h4>Mazes</h4>
-				<table id="mazes">
-				</table>
+				<div id="mazes">
+				
+				</div>
 
 				<h4>Sokoban</h4>
-				<table id="soko">
-				</table>
+				<div id="soko">
+				
+				</div>
 			
 			<div id="custom">
 				<h4>Custom</h4>
-				<table id="customtable">
-				</table>
+				<div id="customtable">
+				
+				</div>
 			</div>
 		</div></div>
 		
@@ -146,7 +157,7 @@ window.onload = vertCenter;
 
 			<h4>Renderer (must refresh)</h4>
 				<dl>
-					<dt>Use WebGL Renderer</dt>
+					<dt>Preferred Renderer</dt>
 						<dd><a href="#" id="renderopt" onclick="toggleRender()" title="WebGL is best, but you can still change it">???</a></dd>
 				</dl>
 			<div id="webglonly">
@@ -271,8 +282,7 @@ window.onload = vertCenter;
 			
 			<h4>Information</h4>
 				<ul>
-					<li>Works best in Google Chrome, Firefox or Internet Explorer 11</li>
-					<li>Safari and Internet Explorer 10 are supported by disabling the WebGL Renderer</li>
+					<li>If there's any problems, change the renderer in options.</li>
 				</ul>
 		</div></div>
 		
@@ -314,18 +324,43 @@ window.onload = vertCenter;
 <div id="overlay1"></div>
 
 <div id="view"></div>
+<div id="playtwo">
+	<div id="twocont">
+	
+	</div>
+</div>
 
 <div id="unnav"></div>
 <button id="blur-hack"></button>
 
-<script src="js/three/three.min.js"></script>
-<script src="js/three/OrbitControls.js"></script>
+<div id="preImageLoad"></div>
+
+<!--[if lte IE 7]>
+<script type="text/javascript">
+	alert('This game will not work in Internet Explorer 7 and lower.');
+</script>
+<![endif]-->
+
+<!--[if lte IE 8]>
+	<script type="text/javascript" src="js/ie.js"></script>
+	<script type="text/javascript" src="js/third/json3min.js"></script>
+<![endif]-->
+
+
+<!--[if !lte IE 9]><!-->
+<script src="js/third/three.min.js"></script>
+<script src="js/third/OrbitControls.js"></script>
+<!--<![endif]-->
 
 <script type="text/javascript" src="js/setup.js"></script>
+<script type="text/javascript" src="js/models.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
 <script type="text/javascript" src="js/nav.js"></script>
-<script type="text/javascript" src="js/draw.js"></script>
-<script type="text/javascript" src="js/movement.js"></script>
+<script type="text/javascript" src="js/play.js"></script>
+<script type="text/javascript" src="js/draw3d.js"></script>
+<script type="text/javascript" src="js/draw2d.js"></script>
+<script type="text/javascript" src="js/move3d.js"></script>
+<script type="text/javascript" src="js/move2d.js"></script>
 
 <script type="text/javascript" src="js/packs.js"></script>
 <script type="text/javascript" src="js/packs/main.js"></script>
@@ -334,6 +369,8 @@ window.onload = vertCenter;
 <script type="text/javascript" src="js/packs/skinner.js"></script>
 
 <script type="text/javascript" src="js/parser.js"></script>
+
+
 
 </body>
 </html>

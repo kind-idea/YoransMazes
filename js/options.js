@@ -22,12 +22,8 @@ function defaultToggles(){
 	errHide();
 }
 function defaultRender(){
-	if (supportsWebGL === true){
-		useWebGL = true;
-	} else {
-		useWebGL = false;
-	}
-	localStorage.useWebGL = JSON.stringify(useWebGL);
+	prefRender = 'WebGL';
+	localStorage.prefRender = JSON.stringify(prefRender);
 }
 
 function GLOpts(what){
@@ -40,17 +36,15 @@ function GLOpts(what){
 }
 
 function toggleRender(){
-	if (supportsWebGL === false){
-		error('Your browser does not <a href="http://get.webgl.org/" title="Get WebGL">support WebGL, or has WebGL disabled</a>.',1);
-		useWebGL = false;
-	} else if (supportsWebGL === true){
-		if (useWebGL === false){
-			useWebGL = true;
-		} else if (useWebGL === true){
-			useWebGL = false;
-		}
+	if (prefRender === 'WebGL'){
+		prefRender = 'Canvas';
+	} else if (prefRender === 'Canvas'){
+		prefRender = 'Image';
+	} else if (prefRender === 'Image'){
+		prefRender = 'WebGL';
 	}
-	localStorage.useWebGL = JSON.stringify(useWebGL);
+
+	localStorage.prefRender = JSON.stringify(prefRender);
 	correctOpts();
 }
 function toggle(option){
@@ -99,8 +93,8 @@ function saveKeycode(code){
 
 
 function correctOpts(){
-	document.getElementById('renderopt').innerHTML = useWebGL;
-	if (useWebGL === false){
+	document.getElementById('renderopt').innerHTML = prefRender;
+	if (prefRender !== 'WebGL'){
 		GLOpts('hide');
 	} else{
 		GLOpts('show');
@@ -125,14 +119,10 @@ function correctOpts(){
 
 // DATA
 function loadData(){
-	if (supportsWebGL === true){
-		if (!localStorage.useWebGL){
-			defaultRender();
-		} else {
-			useWebGL = JSON.parse(localStorage.useWebGL);
-		}
-	} else{
-		useWebGL = false;
+	if (!localStorage.prefRender){
+		defaultRender();
+	} else {
+		prefRender = JSON.parse(localStorage.prefRender);
 	}
 
 	if (!localStorage.gameData){
