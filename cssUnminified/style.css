@@ -90,7 +90,7 @@ body{
 }
 .loadico{
 	display:inline-block;
-	background:url(load.png);
+	background:url(img/load.png);
 	width:138px;
 	height:26px;
 	position:absolute;
@@ -144,7 +144,7 @@ a#pauseico:active{background-position:0 48px;}
 	display:inline-block;
 	text-align:center;
 	border:2px solid #ccc;
-	border:2px solid rgba(255,255,255,0.8);
+	border:2px solid hsla(0,0,100%,.8);
 	-webkit-border-radius:50%;
 	-khtml-border-radius:50%;
 	-moz-border-radius:50%;
@@ -335,12 +335,12 @@ a.close{
 	right:-8px;
 	width:16px;
 	height:16px;
-	-webkit-box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
-	-khtml-box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
-	-moz-box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
-	-ms-box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
-	-o-box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
-	box-shadow:-1px 1px 5px rgba(0,0,0,0.5);
+	-webkit-box-shadow:-1px 1px 5px rgba(0,0,0,.5);
+	-khtml-box-shadow:-1px 1px 5px rgba(0,0,0,.5);
+	-moz-box-shadow:-1px 1px 5px rgba(0,0,0,.5);
+	-ms-box-shadow:-1px 1px 5px rgba(0,0,0,.5);
+	-o-box-shadow:-1px 1px 5px rgba(0,0,0,.5);
+	box-shadow:-1px 1px 5px rgba(0,0,0,.5);
 	-webkit-border-radius:50%;
 	-khtml-border-radius:50%;
 	-moz-border-radius:50%;
@@ -380,7 +380,7 @@ a:hover{
 	color:#eee;
 	text-decoration:underline;
 }
-a:active{color:#ffff00;}
+a:active{color:#ff0;}
 
 
 #menu ul{

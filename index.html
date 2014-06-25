@@ -8,14 +8,14 @@
 
 <link rel="icon" type="image/png" href="favicon.png"/>
 
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="style.min.css">
 
 <!--[if lte IE 9]>
-<link rel="stylesheet" type="text/css" href="ie.css">
+<link rel="stylesheet" type="text/css" href="ie.min.css">
 <![endif]-->
 
 <!--[if lte IE 8]>
-<link rel="stylesheet" type="text/css" href="ie8.css">
+<link rel="stylesheet" type="text/css" href="ie8.min.css">
 <![endif]-->
 
 </head>
@@ -311,25 +311,28 @@
 <div id="unnav"></div>
 <button id="blur-hack"></button>
 
-<script type="text/javascript" src="js/setup.js"></script>
-
 <!--[if lte IE 7]>
 <script type="text/javascript">
 	alert('This game will not work in Internet Explorer 7 and lower.');
 </script>
 <![endif]-->
 
-<!--[if lte IE 8]>
-	<script type="text/javascript" src="js/ie.js"></script>
-	<script type="text/javascript" src="js/third/json3min.js"></script>
-<![endif]-->
-
+<script type="text/javascript" src="js/start.min.js"></script>
 
 <!--[if !lte IE 9]><!-->
 <script src="js/third/three.min.js"></script>
-<script src="js/third/OrbitControls.js"></script>
+<script src="js/third/OrbitControls.min.js"></script>
 <!--<![endif]-->
 
+<!--[if lte IE 8]>
+	<script type="text/javascript" src="js/ie.min.js"></script>
+	<script type="text/javascript" src="js/third/json3min.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="js/allpacks.min.js"></script>
+<script type="text/javascript" src="js/game.min.js"></script>
+
+<!--
 <script type="text/javascript" src="js/models.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
 <script type="text/javascript" src="js/nav.js"></script>
@@ -345,7 +348,7 @@
 <script type="text/javascript" src="js/packs/haywood.js"></script>
 <script type="text/javascript" src="js/packs/skinner.js"></script>
 
-<script type="text/javascript" src="js/parser.js"></script>
+<script type="text/javascript" src="js/parser.js"></script> -->
 
 
 
