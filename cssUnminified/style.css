@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Black Ops One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Black Ops One'), local('BlackOpsOne-Regular'), url(fonts/boo.woff) format('woff');
+}
+@font-face {
+  font-family: 'Emblema One';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Emblema One'), local('EmblemaOne-Regular'), url(fonts/emb.woff) format('woff');
+}
+@font-face {
+  font-family: 'Gruppo';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Gruppo'), url(fonts/gruppo.woff) format('woff');
+}
 *{
 	margin:0;
 	padding:0;

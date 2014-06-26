@@ -170,21 +170,13 @@ function startRender(){
 	addLight(45,45,-50,0.2);
 	
 	var textures;
-	if (useWebGL === true){
+
 	textures = [
 			["tex/c3.jpg",'groundTex'],
 			["tex/side.jpg",'boxTex'],
 			["tex/metA.jpg",'metATex'],
 			["tex/metB.jpg",'metBTex']
 	];
-	} else{
-	textures = [
-			["tex/c3small.jpg",'groundTex'],
-			["tex/sidesmall.jpg",'boxTex'],
-			["tex/metA.jpg",'metATex'],
-			["tex/metB.jpg",'metBTex']
-	];
-	}
 
 	for (var i=0; i<textures.length; i++){
 		var texName = textures[i][1];

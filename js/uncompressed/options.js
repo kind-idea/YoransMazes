@@ -1,7 +1,7 @@
 var gameData = {};
 var toggles = {};
 var keycode = {};
-var useWebGL;
+
 function defaultControls(){
 	keycode.up = 38; // Up arrow
 	keycode.down = 40; // Down arrow
@@ -48,11 +48,6 @@ function toggleRender(){
 	correctOpts();
 }
 function toggle(option){
-	if (useWebGL === false){
-		error('These only work if the WebGL renderer is enabled.',1);
-		return;
-	}
-
 	toggles[option] = !toggles[option];
 	var id = 'toggle' + option;
 	if (toggles[option] === false){

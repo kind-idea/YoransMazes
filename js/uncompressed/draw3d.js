@@ -300,7 +300,7 @@ function draw() {
 				newEnd(i,j,an);
 			}
 
-			if (toggles.decor === true && useWebGL === true){
+			if (toggles.decor === true && curRender === 'WebGL'){
 				if (val === 'A' || val === 'B' || val === 'C' || val === 'D'){
 					if (val === 'A'){an = 0;}
 					if (val === 'B'){an = 1;}

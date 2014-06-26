@@ -1,0 +1,71 @@
+CACHE MANIFEST
+
+# v1.0.1
+
+# Regular Site stuff
+index.html
+format.html
+style.min.css
+js/allpacks.min.js
+js/game.min.js
+js/start.min.js
+js/third/OrbitControls.min.js
+js/third/three.min.js
+img/arrow.png
+img/close16.png
+img/how1.jpg
+img/how2.jpg
+img/how3.jpg
+img/how4.jpg
+img/hud.png
+img/load.png
+img/lr.png
+img/ref.png
+fonts/boo.woff
+fonts/emb.woff
+fonts/gruppo.woff
+# Textures
+tex/c3.jpg
+tex/metA.jpg
+tex/metB.jpg
+tex/side.jpg
+# 3D Models
+mods/barrel/bGeo.js
+mods/barrel/black.jpg
+mods/barrel/blue.jpg
+mods/barrel/green.jpg
+mods/barrel/grey.jpg
+mods/barrel/norm.jpg
+mods/barrel/red.jpg
+mods/barrel/rust.jpg
+mods/barrel/spec.jpg
+mods/barrel/yellow.jpg
+mods/door/doorClose.js
+mods/door/doorOpen.js
+mods/door/map.jpg
+mods/door/mapred.jpg
+mods/door/norm.jpg
+mods/guy/guy.js
+mods/guy/norm.png
+mods/guy/spec.png
+mods/guy/tex.png
+mods/table/tGeo.js
+mods/table/ao.jpg
+mods/table/dirty.jpg
+mods/table/norm.jpg
+mods/table/rough.jpg
+mods/table/weathered.jpg
+# 2D Game
+image.min.css
+2d/box.png
+2d/char.png
+2d/cm.jpg
+2d/goalG.jpg
+2d/goalR.jpg
+2d/ieGG.png
+2d/ieGR.png
+2d/metA.jpg
+2d/metB.jpg
+
+NETWORK:
+*

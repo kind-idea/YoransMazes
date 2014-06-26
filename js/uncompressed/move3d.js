@@ -174,7 +174,7 @@ function move(dir){
 	optimX = Math.round(charX * 10 + offsetX);
 	optimY = Math.round(charY * -10 + offsetY);
 	
-	if (toggles.anim === true && useWebGL === true){
+	if (toggles.anim === true && curRender === 'WebGL'){
 		//	actionsEnabled = 0;
 		animate();
 	} else {

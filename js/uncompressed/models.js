@@ -4,7 +4,6 @@ function load(){
 	document.getElementById('loading').style.display = 'block';
 
 	var doorNorm = THREE.ImageUtils.loadTexture('mods/door/norm.jpg');
-	var doorSpec = THREE.ImageUtils.loadTexture('mods/door/spec.jpg');
 	var doorMap = THREE.ImageUtils.loadTexture('mods/door/map.jpg');
 	var doorMapR = THREE.ImageUtils.loadTexture('mods/door/mapred.jpg');
 
@@ -14,7 +13,6 @@ function load(){
 		color: new THREE.Color(0.64,0.64,0.64),
 		map: doorMap,
 		normalMap: doorNorm,
-		specularMap: doorSpec,
 		shininess: 50
 	});
 	var doorRed = new THREE.MeshPhongMaterial({
@@ -23,7 +21,6 @@ function load(){
 		color: new THREE.Color(0.64,0.64,0.64),
 		map: doorMapR,
 		normalMap: doorNorm,
-		specularMap: doorSpec,
 		shininess: 50
 	});
 
@@ -59,7 +56,6 @@ function load(){
 				map: THREE.ImageUtils.loadTexture('mods/guy/tex.png'),
 				normalMap: THREE.ImageUtils.loadTexture('mods/guy/norm.png'),
 				specularMap: THREE.ImageUtils.loadTexture('mods/guy/spec.png'),
-			//	bumpMap: THREE.ImageUtils.loadTexture('mods/guy/disp.jpg'),
 				shininess: 50
 			});
 			geometry.faceVertexUvs[1] = geometry.faceVertexUvs[0]; // If we use a lightmap, we need two arrays of UVs?
@@ -122,7 +118,6 @@ function loadDecor(){
 		"mods/table/weathered.jpg"
 	];
 	var tNorm = THREE.ImageUtils.loadTexture('mods/table/norm.jpg');
-	var tSpec = THREE.ImageUtils.loadTexture('mods/table/spec.jpg');
 	var tLight = THREE.ImageUtils.loadTexture('mods/table/ao.jpg');
 	
 	var tTexs = [];
@@ -138,12 +133,11 @@ function loadDecor(){
 			for (var i=0; i<tTexs.length; i++){
 				var mat = new THREE.MeshPhongMaterial({
 					ambient: new THREE.Color(0.64,0.64,0.64),
-					specular: new THREE.Color(1.0,1.0,1.0),
+					specular: new THREE.Color(0,0,0),
 					color: new THREE.Color(0.64,0.64,0.64),
 					map: tTexs[i],
 					normalMap: tNorm,
 					lightMap: tLight,
-					specularMap: tSpec,
 					shininess: 50
 				});
 				var mesh = new THREE.Mesh( geometry, mat );
@@ -156,20 +150,14 @@ function loadDecor(){
 	}
 }
 function doneCheck(){
-	if (waitingFor === 'both'){
-		if (loadedModels === 3 && loadedDecor === 2){
+	if (waitingFor === 'both' && loadedModels === 3 && loadedDecor === 2){
 			allReady();
 			document.getElementById('loading').style.display = 'none';
-		}
-	} else if (waitingFor === 'main'){
-		if (loadedModels === 3){
+	} else if (waitingFor === 'main' && loadedModels === 3){
 			allReady();
 			document.getElementById('loading').style.display = 'none';
-		}
-	} else if (waitingFor === 'decor'){
-		if (loadedDecor === 2){
+	} else if (waitingFor === 'decor' && loadedDecor === 2){
 			document.getElementById('loading').style.display = 'none';
-		}
 	}
 }
 
